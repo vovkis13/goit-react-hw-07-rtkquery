@@ -20,9 +20,7 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(contactsApi.middleware),
+    getDefaultMiddleware().concat(contactsApi.middleware),
 });
 export default store;
 
