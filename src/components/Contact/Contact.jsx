@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { changeFilter } from 'redux/actions';
-import { deleteContact } from 'redux/operations';
+import { changeFilter } from 'redux/store';
+import { useDeleteItemMutation, useGetItemsQuery } from 'services/api';
 import s from './Contact.module.css';
 
 export default function Contact({ contact: { id, name, phone } }) {
   const dispatch = useDispatch();
-
+  const [deleteContact] = useDeleteItemMutation();
+  useGetItemsQuery();
   const handleDelete = e => {
     e.preventDefault();
     dispatch(changeFilter(''));
-    dispatch(deleteContact(id));
+    deleteContact(id);
   };
-
   return (
     <li className={s.contact}>
       <p>{name}</p>

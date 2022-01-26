@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postContact } from 'redux/operations';
-import { changeFilter } from 'redux/actions';
+import { usePostItemMutation } from 'services/api';
+import { changeFilter } from 'redux/store';
 import s from './ContactForm.module.css';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [postContact] = usePostItemMutation();
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -16,7 +17,7 @@ export default function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(postContact({ name, phone }));
+    postContact({ name, phone });
     dispatch(changeFilter(''));
     setName('');
     setPhone('');
