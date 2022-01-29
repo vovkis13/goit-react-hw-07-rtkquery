@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { BallTriangle } from 'react-loader-spinner';
 import { useGetItemsQuery } from 'services/api';
 import { getFilteredContacts } from 'redux/selectors';
-import Contact from 'components/Contact';
+import Contact from 'components/ContactList/Contact';
 import s from './ContactList.module.css';
 
 export default function ContactList() {
